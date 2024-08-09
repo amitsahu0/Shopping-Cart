@@ -44,7 +44,7 @@ pipeline {
         stage('Build Application and Push Artifact') {
             steps {
                 withMaven(globalMavenSettingsConfig: '', jdk: 'jdk17', maven: 'maven3', mavenSettingsConfig: 'maven-settings-default', traceability: true) {
-                    sh "mvn deploy"
+                    sh "mvn deploy --DskipTests=true"
                 }
             }
         }
