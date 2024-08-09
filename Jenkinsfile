@@ -49,11 +49,16 @@ pipeline {
             }
         }
 
-        // stage('Hello') {
-        //     steps {
-        //         echo 'Hello World'
-        //     }
-        // }
+        stage('Docker Build & Tag and Push') {
+            steps {
+                script{
+                    withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+                        sh "docker build -t amitdocker6/shoppingcart:latest ."
+                        sh " docker push amitdocker6/shoppingcart:latest "
+                    }
+                }
+            }
+        }
 
         // stage('Hello') {
         //     steps {
